@@ -8,9 +8,14 @@ class MilestoneDetailsScreen extends StatelessWidget {
   final String type;
   final String remark;
   DateTime milestoneDate;
-  final String id;
+  //final String id;
 
-  MilestoneDetailsScreen({this.type, this.milestoneDate, this.remark, this.id});
+  MilestoneDetailsScreen({
+    this.type,
+    this.milestoneDate,
+    this.remark,
+    //this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class MilestoneDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(type),
       ),
-      body: SingleChildScrollView(
+      /*body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
@@ -54,7 +59,7 @@ class MilestoneDetailsScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
+      ),*/
     );
   }
 }

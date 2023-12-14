@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../screen/edit_milestone_screen.dart';
+import '../screen/milestone_details_screen.dart';
 
 import '../models/milestones.dart';
 import './milestone_item.dart';
@@ -15,7 +17,20 @@ class MilestoneItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(type),
+      title: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (ctx) => MilestoneDetailsScreen(
+                      type: type,
+                      milestoneDate: milestoneDate,
+                      remark: remark,
+                      //id: id,
+                    )),
+          );
+        },
+        child: Text(type),
+      ),
       leading: CircleAvatar(
         child: Text(milestoneDate.toString()),
       ),

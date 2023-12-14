@@ -14,7 +14,7 @@ class MilestoneDisplayScreen extends StatelessWidget {
     final milestonesData = Provider.of<Milestones>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Products'),
+        title: const Text('Your baby\'s Milestone'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.add),
