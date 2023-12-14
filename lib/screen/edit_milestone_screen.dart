@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 import '../models/milestone.dart';
 import '../models/milestones.dart';
-import '../widgets/adaptive_text_button.dart';
 
 class EditMilestoneScreen extends StatefulWidget {
   static const routeName = '/edit-milestone';
@@ -61,24 +60,6 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
     super.dispose();
   }
 
-  /*void _presentDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2019),
-      lastDate: DateTime.now(),
-    ).then((pickeddate) {
-      if (pickeddate == null) {
-        return;
-      }
-      setState(() {
-        //what user picked displays in textbox
-        all comment
-        _dateController = pickeddate;
-      });
-    });
-  }*/
-
   void _saveForm() {
     _editedMilestone.milestoneDate = _dateController;
     final isValid = _form.currentState.validate();
@@ -88,12 +69,12 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
     _form.currentState.save();
     if (_editedMilestone.id != null) {
       Provider.of<Milestones>(context, listen: false)
-          .updateProduct(_editedMilestone.id, _editedMilestone);
+          .updateMilestone(_editedMilestone.id, _editedMilestone);
     } else {
       Provider.of<Milestones>(
         context,
         listen: false,
-      ).addProduct(_editedMilestone);
+      ).addMilestone(_editedMilestone);
     }
 
     Navigator.of(context).pop();
@@ -198,7 +179,6 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
                         ),
                       ),
                     ),
-                    //AdaptiveTextButton('Choose Date', _presentDatePicker)
                   ],
                 ),
               ),

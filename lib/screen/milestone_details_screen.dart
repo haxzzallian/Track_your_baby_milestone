@@ -9,24 +9,15 @@ class MilestoneDetailsScreen extends StatelessWidget {
   final String type;
   final String remark;
   DateTime milestoneDate;
-  //final String id;
 
   MilestoneDetailsScreen({
     this.type,
     this.milestoneDate,
     this.remark,
-    //this.id,
   });
 
   @override
   Widget build(BuildContext context) {
-    /*final milestoneId =
-        ModalRoute.of(context).settings.arguments as String; // is the id!
-    final loadedMileStone = Provider.of<Milestones>(
-      context,
-      listen: false,
-    ).findById(milestoneId);*/
-
     return Scaffold(
       appBar: AppBar(
         title: Text(type),

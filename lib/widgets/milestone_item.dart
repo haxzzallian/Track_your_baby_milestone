@@ -6,7 +6,6 @@ import '../screen/edit_milestone_screen.dart';
 import '../screen/milestone_details_screen.dart';
 
 import '../models/milestones.dart';
-import './milestone_item.dart';
 
 class MilestoneItem extends StatelessWidget {
   final String id;
@@ -53,7 +52,7 @@ class MilestoneItem extends StatelessWidget {
               icon: Icon(Icons.delete),
               onPressed: () {
                 Provider.of<Milestones>(context, listen: false)
-                    .deleteProduct(id);
+                    .deleteMilestone(id);
               },
               color: Theme.of(context).errorColor,
             ),

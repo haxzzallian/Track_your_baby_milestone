@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../OnBoarding/onBoarding_page.dart';
 import '../../resources/assets_manager.dart';
 
 import '../resources/routes_manager.dart';
@@ -27,14 +26,6 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           Image.asset(AssetManager.background),
-          /*Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(AppAssets.logo),
-              ],
-            ),
-          ),*/
         ],
       ),
     );

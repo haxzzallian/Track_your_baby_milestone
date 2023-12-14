@@ -33,7 +33,7 @@ class Milestones with ChangeNotifier {
     return _items.firstWhere((mil) => mil.id == id);
   }
 
-  void addProduct(Milestone milestone) {
+  void addMilestone(Milestone milestone) {
     final newMilestone = Milestone(
       type: milestone.type,
       remark: milestone.remark,
@@ -41,11 +41,11 @@ class Milestones with ChangeNotifier {
       id: DateTime.now().toString(),
     );
     _items.add(newMilestone);
-    // _items.insert(0, newProduct); // at the start of the list
+
     notifyListeners();
   }
 
-  void updateProduct(String id, Milestone newMilestone) {
+  void updateMilestone(String id, Milestone newMilestone) {
     final milestoneIndex = _items.indexWhere((mil) => mil.id == id);
     if (milestoneIndex >= 0) {
       _items[milestoneIndex] = newMilestone;
@@ -55,7 +55,7 @@ class Milestones with ChangeNotifier {
     }
   }
 
-  void deleteProduct(String id) {
+  void deleteMilestone(String id) {
     _items.removeWhere((mil) => mil.id == id);
     notifyListeners();
   }
