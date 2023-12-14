@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import '../models/milestones.dart';
 
@@ -30,13 +31,16 @@ class MilestoneDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(type),
       ),
-      /*body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
-                height: 300,
-                width: double.infinity,
-                child: Text('milestoneDate')),
+              height: 300,
+              width: double.infinity,
+              child: Text(
+                milestoneDate.toString(),
+              ),
+            ),
             SizedBox(height: 10),
             Text(
               type,
@@ -59,7 +63,7 @@ class MilestoneDetailsScreen extends StatelessWidget {
             )
           ],
         ),
-      ),*/
+      ),
     );
   }
 }
