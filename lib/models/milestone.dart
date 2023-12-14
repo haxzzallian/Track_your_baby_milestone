@@ -4,7 +4,7 @@ class Milestone with ChangeNotifier {
   final String id;
   final String type;
   final String remark;
-  final DateTime milestoneDate;
+  DateTime milestoneDate;
 
   Milestone({
     @required this.id,

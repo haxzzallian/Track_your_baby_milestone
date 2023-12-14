@@ -38,8 +38,10 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
     if (_isInit) {
       final milestoneId = ModalRoute.of(context).settings.arguments as String;
       if (milestoneId != null) {
-        _editedMilestone = Provider.of<Milestones>(context, listen: false)
-            .findById(milestoneId);
+        _editedMilestone = Provider.of<Milestones>(
+          context,
+          listen: false,
+        ).findById(milestoneId);
         _initValues = {
           'type': _editedMilestone.type,
           'remark': _editedMilestone.remark,
@@ -59,7 +61,7 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
     super.dispose();
   }
 
-  void _presentDatePicker() {
+  /*void _presentDatePicker() {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -74,9 +76,10 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
         _dateController = pickeddate;
       });
     });
-  }
+  }*/
 
   void _saveForm() {
+    _editedMilestone.milestoneDate = _dateController;
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -86,9 +89,12 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
       Provider.of<Milestones>(context, listen: false)
           .updateProduct(_editedMilestone.id, _editedMilestone);
     } else {
-      Provider.of<Milestones>(context, listen: false)
-          .addProduct(_editedMilestone);
+      Provider.of<Milestones>(
+        context,
+        listen: false,
+      ).addProduct(_editedMilestone);
     }
+
     Navigator.of(context).pop();
   }
 
@@ -161,33 +167,37 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: TextFormField(
-                        initialValue: _initValues['milestoneDate'],
-                        decoration: InputDecoration(labelText: 'Choose Date'),
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'No Date Chosen';
-                          }
-                          return null;
-                        },
-                        onTap: _presentDatePicker,
-                        onSaved: (value) {
-                          _editedMilestone = Milestone(
-                            type: value,
-                            remark: _editedMilestone.remark,
-                            id: _editedMilestone.id,
-                            milestoneDate: value,
-                          );
-                        },
-                      ),
-                    ),
-                    //AdaptiveTextButton('Choose Date', _presentDatePicker),
-                    /* _dateController == null
+                      child: Text(
+                        _dateController == null
                             ? 'No Date Chosen'
-                            : 'Picked Date: ${DateFormat.yMMMEd().format(_dateController)}',
+                            : 'Picked Date: ${DateFormat.yMd().format(_dateController)}',
                       ),
                     ),
-                    AdaptiveTextButton('Choose Date', _presentDatePicker)*/
+                    TextButton(
+                      onPressed: () {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2019),
+                          lastDate: DateTime.now(),
+                        ).then((pickeddate) {
+                          if (pickeddate == null) {
+                            return;
+                          }
+                          setState(() {
+                            //what user picked displays in textbox
+                            _dateController = pickeddate;
+                          });
+                        });
+                      },
+                      child: Text(
+                        'Choose Date',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    //AdaptiveTextButton('Choose Date', _presentDatePicker)
                   ],
                 ),
               ),
