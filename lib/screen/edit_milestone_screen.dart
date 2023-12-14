@@ -73,6 +73,7 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
       }
       setState(() {
         //what user picked displays in textbox
+        all comment
         _dateController = pickeddate;
       });
     });
