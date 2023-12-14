@@ -6,8 +6,6 @@ import '../models/milestone.dart';
 import '../models/milestones.dart';
 import '../widgets/adaptive_text_button.dart';
 
-//import '../widgets/app_drawer.dart';
-
 class EditMilestoneScreen extends StatefulWidget {
   static const routeName = '/edit-milestone';
 
@@ -18,7 +16,7 @@ class EditMilestoneScreen extends StatefulWidget {
 class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
   final _typeFocusNode = FocusNode();
   final _remarkFocusNode = FocusNode();
-  //final _dateController = FocusNode();
+
   DateTime _dateController;
 
   final _form = GlobalKey<FormState>();
@@ -32,15 +30,8 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
     'type': '',
     'remark': '',
     'milestoneDate': '',
-    //'imageUrl': '',
   };
   var _isInit = true;
-
-  /* @override
-  void initState() {
-    _imageUrlFocusNode.addListener(_updateImageUrl);
-    super.initState();
-  }*/
 
   @override
   void didChangeDependencies() {
@@ -53,10 +44,7 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
           'type': _editedMilestone.type,
           'remark': _editedMilestone.remark,
           'milestoneDate': _editedMilestone.milestoneDate.toString(),
-          // 'imageUrl': _editedProduct.imageUrl,
-          //'imageUrl': '',
         };
-        //_imageUrlController.text = _editedProduct.imageUrl;
       }
     }
     _isInit = false;
@@ -65,30 +53,12 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
 
   @override
   void dispose() {
-    /*_imageUrlFocusNode.removeListener(_updateImageUrl);
-    _priceFocusNode.dispose();
-    _descriptionFocusNode.dispose();
-    _imageUrlController.dispose();
-    _imageUrlFocusNode.dispose();*/
-    //_dateController.dispose();
     _typeFocusNode.dispose();
     _remarkFocusNode.dispose();
 
     super.dispose();
   }
 
-  /*void _updateImageUrl() {
-    if (!_imageUrlFocusNode.hasFocus) {
-      if ((!_imageUrlController.text.startsWith('http') &&
-              !_imageUrlController.text.startsWith('https')) ||
-          (!_imageUrlController.text.endsWith('.png') &&
-              !_imageUrlController.text.endsWith('.jpg') &&
-              !_imageUrlController.text.endsWith('.jpeg'))) {
-        return;
-      }
-      setState(() {});
-    }
-  }*/
   void _presentDatePicker() {
     showDatePicker(
       context: context,
@@ -191,13 +161,33 @@ class _EditMilestoneScreenState extends State<EditMilestoneScreen> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text(
-                        _dateController == null
+                      child: TextFormField(
+                        initialValue: _initValues['milestoneDate'],
+                        decoration: InputDecoration(labelText: 'Choose Date'),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'No Date Chosen';
+                          }
+                          return null;
+                        },
+                        onTap: _presentDatePicker,
+                        onSaved: (value) {
+                          _editedMilestone = Milestone(
+                            type: value,
+                            remark: _editedMilestone.remark,
+                            id: _editedMilestone.id,
+                            milestoneDate: value,
+                          );
+                        },
+                      ),
+                    ),
+                    //AdaptiveTextButton('Choose Date', _presentDatePicker),
+                    /* _dateController == null
                             ? 'No Date Chosen'
                             : 'Picked Date: ${DateFormat.yMMMEd().format(_dateController)}',
                       ),
                     ),
-                    AdaptiveTextButton('Choose Date', _presentDatePicker)
+                    AdaptiveTextButton('Choose Date', _presentDatePicker)*/
                   ],
                 ),
               ),

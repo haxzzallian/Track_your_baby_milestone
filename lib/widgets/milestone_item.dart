@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import '../screen/edit_milestone_screen.dart';
 import '../screen/milestone_details_screen.dart';
@@ -32,7 +33,9 @@ class MilestoneItem extends StatelessWidget {
         child: Text(type),
       ),
       leading: CircleAvatar(
-        child: Text(milestoneDate.toString()),
+        child: FittedBox(
+          child: Text(DateFormat.Md().format(milestoneDate)),
+        ),
       ),
       trailing: Container(
         width: 100,
@@ -57,6 +60,7 @@ class MilestoneItem extends StatelessWidget {
           ],
         ),
       ),
+      subtitle: Text(remark),
     );
   }
 }
